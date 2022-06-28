@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\AlumnosRequest;
 class AlumnosController extends Controller
 {
     /**
@@ -17,14 +17,19 @@ class AlumnosController extends Controller
         //
         return Alumno::all();
     }
-
+    public function cur($curso)
+    {
+        //return Producto::all();
+        //return Producto::orderBy('nombre')->get();
+        return Alumno::select()->where('nom_curso', $curso)->get();
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AlumnosRequest $request)
     {
         //
         $alumno = new Alumno();
@@ -61,7 +66,7 @@ class AlumnosController extends Controller
     public function update(Request $request, Alumno $alumno)
     {
         //
-        $alumno -> cod_alumno = $request -> cod_alumno;
+       
         $alumno -> nom_alumno = $request -> nom_alumno;
         $alumno -> direccion = $request -> direccion;
         $alumno -> telefono = $request -> telefono;

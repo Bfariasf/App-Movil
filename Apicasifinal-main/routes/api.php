@@ -22,7 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/curso', CursoController::class);
+
 Route::apiResource('/alumnos',AlumnosController::class);
+Route::get('/alumno/{curso}', [AlumnosController::class, 'cur']);
 
 Route::apiResource('/educadoras', EducadorasController::class);
+Route::get('/educadora/{curso}', [EducadorasController::class, 'cursos']);
+
 Route::apiResource('/eventos', EventosController::class);
+

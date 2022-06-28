@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use Illuminate\Http\Request;
+use App\Http\Requests\EventosRequest;
 
 class EventosController extends Controller
 {
@@ -24,7 +25,7 @@ class EventosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EventosRequest $request)
     {
         //
         $evento = new Evento();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Educadora;
 use Illuminate\Http\Request;
+use App\Http\Requests\EducadorasRequest;
 
 class EducadorasController extends Controller
 {
@@ -17,13 +18,21 @@ class EducadorasController extends Controller
         return Educadora::all();
     }
 
+    public function cursos($curso)
+    {
+        //return Producto::all();
+        //return Producto::orderBy('nombre')->get();
+        return Educadora::select()->where('cod_curso', $curso)->get();
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EducadorasRequest $request)
     {
         $educadora = new Educadora();
         $educadora->cod_tia = $request->cod_tia;

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Curso;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CursosRequest;
 class CursoController extends Controller
 {
     /**
@@ -23,7 +23,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursosRequest $request)
     {
         $curso = new Curso();
         $curso -> cod_curso = $request -> cod_curso;

@@ -25,6 +25,20 @@ class EventosRequest extends FormRequest
     {
         return [
             //
+            'cod_evento' => 'required|unique:eventos,cod_evento',
+            'nom_alumno' => 'required',
+            'asunto' => 'required',
+            'descripcion' => 'required|max:100',
+        ];
+    }
+    public function messages(){
+        return [
+            'nom_alumno.required'=>'Nombre necesario',
+
+            'asunto.required'=>'Asunto necesario',
+
+            'descripcion.required'=>'Descripcion necesario',
+            'descripcion.max'=>'Caracteres superados',
         ];
     }
 }
