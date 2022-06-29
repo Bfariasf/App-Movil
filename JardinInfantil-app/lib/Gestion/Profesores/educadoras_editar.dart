@@ -56,6 +56,7 @@ class _EducadoraEditarPageState extends State<EducadoraEditarPage> {
                     TextFormField(
                       controller: codigoCtrl,
                       decoration: InputDecoration(labelText: 'Código',icon: Icon(MdiIcons.codeBraces)),
+                      enabled: false,
                     ),
                     TextFormField(
                       controller: nombreCtrl,

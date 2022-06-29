@@ -145,9 +145,6 @@ class _EventosAgregarState extends State<EventosAgregar> {
                         errDescripcion = '';
                       }
 
-                     
-                     
-
                       setState(() {
                         
                       });

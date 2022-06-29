@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:trabajo/Gestion/Eventos/Eventos_agregar_page.dart';
-import 'package:trabajo/Gestion/Eventos/Eventos_editar.dart';
 import 'package:trabajo/Gestion/Ni%C3%B1o/Alumnos_agregar_page.dart';
 import 'package:trabajo/providers/Alumnos_provider.dart';
 import 'package:trabajo/Gestion/Niño/Alumnos_editar_page.dart';
-import 'package:trabajo/providers/Eventos_provider.dart';
 
-class EventosGest extends StatefulWidget {
-  EventosGest({Key? key}) : super(key: key);
+class Ninos_page extends StatefulWidget {
+  Ninos_page({Key? key}) : super(key: key);
 
   @override
-  State<EventosGest> createState() => _EventosGestState();
+  State<Ninos_page> createState() => _Ninos_pageState();
 }
 
-class _EventosGestState extends State<EventosGest> {
+class _Ninos_pageState extends State<Ninos_page> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Eventos Gestion'),
-        backgroundColor: Colors.purple,
+        title: Text('Lista Alumnos', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),),
+        backgroundColor: Color.fromARGB(255, 56, 215, 255),
       ),
       body: Padding(
         padding: EdgeInsets.all(5),
@@ -30,7 +27,7 @@ class _EventosGestState extends State<EventosGest> {
           children: [
             Expanded(
               child: FutureBuilder(
-                future: EventosProvider().getEventos(),
+                future: AlumnosProvider().getAlumnos(),
                 builder: (context,AsyncSnapshot snap){
                   if(!snap.hasData){
                     return Center(child: CircularProgressIndicator());
@@ -39,12 +36,13 @@ class _EventosGestState extends State<EventosGest> {
                     separatorBuilder:(_,__)=> Divider(),
                     itemCount:snap.data.length,
                     itemBuilder:(context,index){
-                      var eve = snap.data[index];
+                      var alumn = snap.data[index];
                       return Slidable(
                         child: ListTile(
-                          leading: Icon(MdiIcons.exclamationThick),
-                          title:  Text('[${eve['cod_evento']}] ${eve['nom_alumno']}'),
-                          subtitle: Text('Asunto: ''${eve['asunto']}'),
+                          leading: Icon(Icons.child_care),
+                          title: Text('[${alumn['cod_alumno']}] ${alumn['nom_alumno']}'),
+                          subtitle: Text('${alumn['direccion']}'),
+                          trailing: Text('${alumn['nom_curso']}'),
                         ),
                         startActionPane: ActionPane(
                           motion: ScrollMotion(),
@@ -52,7 +50,7 @@ class _EventosGestState extends State<EventosGest> {
                             SlidableAction(
                               onPressed: (context){
                                 MaterialPageRoute route = MaterialPageRoute(
-                                  builder: (context) => Eventos_editar_page(eve['cod_evento']),
+                                  builder: (context) => Alumnos_editar_page(alumn['cod_alumno']),
                                 );
                                 Navigator.push(context, route).then((value){
                                   setState(() { });
@@ -70,18 +68,18 @@ class _EventosGestState extends State<EventosGest> {
                           children: [
                             SlidableAction(
                               onPressed: (context){
-                                int cod_evento = eve['cod_evento'];
-                                String nom_alumno = eve['nom_alumno'];
+                                String cod_alumno = alumn['cod_alumno'];
+                                String nom_alumno = alumn['nom_alumno'];
 
-                                confirmDialog(context, cod_evento.toString()).then((confirma){
+                                confirmDialog(context, nom_alumno).then((confirma){
                                   if(confirma){
-                                    EventosProvider().eventoBorrar(cod_evento).then((borradoOK){
+                                    AlumnosProvider().alumnosBorrar(cod_alumno).then((borradoOK){
                                       if (borradoOK){
                                         snap.data.removeAt(index);
                                         setState(() {});
-                                        showSnackbar('Evento $cod_evento borrado');
+                                        showSnackbar('Alumno $nom_alumno borrado');
                                       }else{
-                                        showSnackbar('No se pudo eliminar el evento');
+                                        showSnackbar('No se pudo eliminar al Alumno');
                                       }
                                     });
                                   }
@@ -102,11 +100,13 @@ class _EventosGestState extends State<EventosGest> {
             Container(
               width: double.infinity,
               
-              child: ElevatedButton(child: Text('Agregar'),
+              child: ElevatedButton(child: Text('Agregar',style: TextStyle(
+                fontWeight: FontWeight.bold
+              ),),
               onPressed: (){
                 MaterialPageRoute go = MaterialPageRoute(
                   builder: (context){
-                    return EventosAgregar();
+                    return Alumnos_agregar_page();
                   });
                   Navigator.push(context, go).then((value){
                     print('Actualizar Pagina');
@@ -114,7 +114,7 @@ class _EventosGestState extends State<EventosGest> {
                   });
               },
               style: TextButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 113, 7, 132),
+                backgroundColor: Color.fromARGB(255, 16, 122, 149),
               )
               ),
             )
@@ -138,7 +138,7 @@ class _EventosGestState extends State<EventosGest> {
       builder: (context){
         return AlertDialog(
           title: Text('Confirmar borrado'),
-          content: Text('¿Borrar el producto $alumno?'),
+          content: Text('¿Borrar el alumno $alumno?'),
           actions: [
             TextButton(
               child: Text('Cancelar'),

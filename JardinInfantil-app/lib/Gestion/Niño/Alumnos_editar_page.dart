@@ -54,6 +54,7 @@ class _Alumnos_editar_pageState extends State<Alumnos_editar_page> {
                 TextFormField(
                   controller: codigoCtrl,
                   decoration: InputDecoration(labelText: 'Codigo', icon: Icon(MdiIcons.codeBraces)),
+                  enabled: false,
                 ),
                 Container(
                   width: double.infinity,

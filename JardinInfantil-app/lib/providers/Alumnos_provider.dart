@@ -41,13 +41,16 @@ class AlumnosProvider{
 
 
   //Llamar un alumno
-  Future<List<dynamic>> getAlumno(String codAlumno)async{
+
+  
+  Future<LinkedHashMap<String, dynamic>> getAlumno(String codAlumno) async {
     var uri = Uri.parse('$apiURL/alumnos/$codAlumno');
     var respuesta = await http.get(uri);
-    if (respuesta.statusCode == 200){
+
+    if (respuesta.statusCode == 200) {
       return json.decode(respuesta.body);
-    }else{
-      return [];
+    } else {
+      return new LinkedHashMap();
     }
   }
 

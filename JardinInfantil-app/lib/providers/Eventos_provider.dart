@@ -46,7 +46,7 @@ class EventosProvider {
 
   
   
-  Future<LinkedHashMap<String, dynamic>>eventoAgregar(String nom_alumno, String asunto, String descripcion)async{
+  Future <LinkedHashMap<String, dynamic>>eventoAgregar(String nom_alumno, String asunto, String descripcion)async{
     var uri = Uri.parse('$apiURL/eventos');
     var respuesta = await http.post(uri, headers: <String, String>{'Content-Type':'application/json; charset=UTF-8','Accept':'application/json'},
     body: jsonEncode(<String, dynamic>{'nom_alumno':nom_alumno,'asunto':asunto,'descripcion':descripcion}));

@@ -25,7 +25,7 @@ class EventosRequest extends FormRequest
     {
         return [
             //
-            'cod_evento' => 'required|unique:eventos,cod_evento',
+            //'cod_evento' => 'required|unique:eventos,cod_evento',
             'nom_alumno' => 'required',
             'asunto' => 'required',
             'descripcion' => 'required|max:100',

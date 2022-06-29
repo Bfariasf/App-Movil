@@ -51,7 +51,7 @@ class _CursoAgregarPageState extends State<CursoAgregarPage> {
               ),
               TextFormField(
                 controller: cantidadCtrl,
-                decoration: InputDecoration(labelText: 'Cantidad de personas perteneciente al curso', icon: Icon(MdiIcons.numeric0BoxMultiple)),
+                decoration: InputDecoration(labelText: 'Cantidad de personas maximas por curso', icon: Icon(MdiIcons.numeric0BoxMultiple)),
                 keyboardType: TextInputType.number,
               ),
               Container(

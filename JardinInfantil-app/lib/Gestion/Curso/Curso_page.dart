@@ -86,10 +86,10 @@ class _CursoPageState extends State<CursoPage> {
                                         //pudo borrar
                                         snap.data.removeAt(index);
                                         setState(() {});
-                                        showSnackbar('Producto $curso borrado');
+                                        showSnackbar('Curso $curso borrado');
                                       } else {
                                         //no pudo borrar
-                                        showSnackbar('No se pudo borrar el producto');
+                                        showSnackbar('No se pudo borrar el curso');
                                       }
                                     });
                                   }
@@ -147,7 +147,7 @@ class _CursoPageState extends State<CursoPage> {
       builder: (context) {
         return AlertDialog(
           title: Text('Confirmar borrado'),
-          content: Text('¿Borrar el producto $producto?'),
+          content: Text('¿Borrar el curso $producto?'),
           actions: [
             TextButton(
               child: Text('CANCELAR'),

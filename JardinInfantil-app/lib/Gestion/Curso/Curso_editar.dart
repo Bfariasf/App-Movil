@@ -53,13 +53,11 @@ class _CursoEditarPageState extends State<CursoEditarPage> {
               key: formKey,
               child: ListView(
                 children: [
-                  Container(
-                    width: double.infinity,
-                    child: Text(errCodigo,style: TextStyle(color: Colors.red),),
-                  ),
+                 
                   TextFormField(
                   controller: codigoCtrl,
                   decoration: InputDecoration(labelText: 'Nivel', icon: Icon(MdiIcons.codeBraces)),
+                  enabled: false,
                   ),
                   Container(
                     width: double.infinity,

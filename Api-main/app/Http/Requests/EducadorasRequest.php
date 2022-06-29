@@ -27,7 +27,7 @@ class EducadorasRequest extends FormRequest
             //
             'cod_tia' => 'required|unique:educadoras,cod_tia',
             'nombre' => 'required',
-            'telefono' => 'required|integer|between:8,12',
+            'telefono' => 'required|integer',
             'cod_curso' => 'required',
         ];
     }
